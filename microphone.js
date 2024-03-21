@@ -1,5 +1,5 @@
 // Functie om de microfoon te starten
-async function startMicrofoon() {
+/*async function startMicrofoon() {
   try {
     const stream = await navigator.mediaDevices.getUserMedia({
       audio: true,
@@ -79,4 +79,4 @@ const decibelLevel = 75; // Geluidsniveau
 const minDecibel = 0; // Minimaal geluidsniveau
 const maxDecibel = 100; // Maximaal geluidsniveau
 const color = decibelToColor(decibelLevel, minDecibel, maxDecibel);
-console.log('Kleur bij', decibelLevel, 'dB:', color);
+console.log('Kleur bij', decibelLevel, 'dB:', color);*/

@@ -1,12 +1,11 @@
-document.getElementById('welcometekst');
-document.getElementById('subtekst-welcome');
+window.onload = () => {
+  const welkomElement = document.getElementById('welcometekst');
+  welkomElement.textContent = 'SCREAM IN SERENITY!';
 
-window.onload = function () {
-  let welkomElement = document.getElementById('welcomtekst');
-  welkomElement.innerHTML = 'SCREAM IN SERENITY!';
-};
+  const subWelkomElement = document.getElementById('subtekst-welcome');
+  subWelkomElement.textContent = 'Ga voor het scherm staan.';
 
-window.onload = function () {
-  let welkomElement = document.getElementById('subtekst-welcome');
-  welkomElement.innerHTML = 'Ga voor het scherm staan.';
+  setTimeout(() => {
+    window.location.href = 'quotes-combined.html'; // Navigeer naar de volgende pagina na 10 seconden
+  }, 5000);
 };

@@ -1,13 +1,16 @@
 const frequencyData = document.getElementById('frequencyData');
 const container = document.getElementById('container-combined');
-const audioContext = new AudioContext();
 
 let analyser;
 let bufferLength;
 let dataArray;
+let quoteIndex = 0;
+let quoteCounter = 0;
 
 async function startMicrofoon() {
   try {
+    const audioContext = new AudioContext();
+
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     analyser = audioContext.createAnalyser();
     const microphone = audioContext.createMediaStreamSource(stream);
@@ -35,43 +38,40 @@ function detecteerGeluidsniveau() {
 
   if (gemiddeldGeluidsniveau > drempelWaarde) {
     loadRandomQuote();
-    applyColorToQuotes(decibelToColor(gemiddeldGeluidsniveau));
   }
 
   displayFrequencyData(gemiddeldGeluidsniveau);
 }
 
 async function loadRandomQuote() {
-  const quotes = Array.from(container.querySelectorAll('p')); // Gebruik 'container' om de paragrafen te selecteren
-  const randomQuote =
-    quotes[Math.floor(Math.random() * quotes.length)].textContent; // Selecteer een willekeurige quote
-}
+  if (quoteCounter < 5) {
+    const quotes = Array.from(container.querySelectorAll('p'));
+    const randomQuote = quotes[quoteIndex];
+    quoteIndex = (quoteIndex + 1) % quotes.length;
 
-function applyColorToQuotes(color) {
-  const quotes = container.querySelectorAll('p'); // Gebruik 'container' om de paragrafen te selecteren
-  quotes.forEach((quote) => {
-    quote.style.color = color;
-  });
-}
+    const quoteElement = document.createElement('p');
+    quoteElement.textContent = randomQuote.textContent;
 
-function displayFrequencyData(average) {
-  frequencyData.innerText = `Gemiddelde frequentie: ${average.toFixed(2)} Hz`; // Gebruik 'frequencyData' om de gemiddelde frequentie weer te geven
-}
+    // Genereer willekeurige posities binnen het container-element
+    const leftPosition =
+      Math.random() * (container.offsetWidth - quoteElement.offsetWidth);
+    const topPosition =
+      Math.random() * (container.offsetHeight - quoteElement.offsetHeight);
 
-function decibelToColor(decibel) {
-  if (decibel >= 0 && decibel <= 30) {
-    return '#E15554';
-  } else if (decibel > 30 && decibel <= 50) {
-    return '#C7EFCF';
-  } else if (decibel > 50 && decibel <= 70) {
-    return '#96C5F7';
-  } else if (decibel > 70 && decibel <= 90) {
-    return '#FFBA49';
-  } else if (decibel > 90 && decibel <= 100) {
-    return '#CA7DF9';
-  } else {
-    return '#FFFFFF'; // Wit
+    // Stel de positie van het quote-element in
+    quoteElement.style.position = 'absolute';
+    quoteElement.style.display = 'block';
+    quoteElement.style.left = `${leftPosition}px`;
+    quoteElement.style.top = `${topPosition}px`;
+
+    container.appendChild(quoteElement);
+
+    quoteCounter++;
   }
 }
 
-window.addEventListener('click', startMicrofoon);
+function displayFrequencyData(average) {
+  frequencyData.innerText = `Gemiddelde frequentie: ${average.toFixed(2)} Hz`;
+}
+
+document.querySelector('body').addEventListener('click', startMicrofoon);
