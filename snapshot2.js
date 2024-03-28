@@ -62,6 +62,7 @@ video.addEventListener('play', () => {
 
       localStorage.setItem('snapshot2', snapshot2);
     }
+    location.assign('/snapshots');
   }, 7000);
 });
 
