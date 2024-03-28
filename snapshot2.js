@@ -27,7 +27,6 @@ video.addEventListener('play', () => {
   setInterval(async () => {
     const detections = await faceapi
       .detectAllFaces(video, new faceapi.TinyFaceDetectorOptions())
-      .withFaceLandmarks()
       .withFaceExpressions();
 
     const resizedDetections = faceapi.resizeResults(detections, displaySize);
@@ -35,21 +34,23 @@ video.addEventListener('play', () => {
     faceapi.draw.drawDetections(canvas, resizedDetections);
     faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
 
+    console.log('Detections:', detections.length);
+
     // Maak een snapshot van het canvas als er nog geen snapshot is genomen
     if (!snapshotTaken && detections.length > 0) {
       const snapshot = canvas.toDataURL('image/png');
 
-      console.log('Eerste snapshot genomen:', snapshot);
+      console.log(' snapshot2 genomen:', snapshot);
       snapshotTaken = true; // Markeer dat er een snapshot is genomen
 
-      localStorage.setItem('snapshot', snapshot);
+      localStorage.setItem('snapshot2', snapshot);
       console.log(detections);
       localStorage.setItem(
         'expression',
         JSON.stringify(detections[0].expressions),
       );
 
-      location.assign('/intro.html'); // nog veranderen !!!!!!!!!
+      //location.assign('/'); nog locatie toe te voegen
     }
 
     // Maak een tweede snapshot als er nog geen tweede snapshot is genomen en er gezichtsdetectie heeft plaatsgevonden

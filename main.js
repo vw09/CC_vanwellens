@@ -52,6 +52,5 @@ video.addEventListener('play', () => {
     }
   }, 7000);
 });
-
 // Laad de modellen en start de video wanneer de pagina geladen is
 loadModels();

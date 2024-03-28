@@ -23,6 +23,7 @@ body {
 
 #container-combined p {
   position: absolute;
+  font-size: 70px;
   display: none;
   color: rgb(19, 238, 202); /* Stand-by kleur */
 }
