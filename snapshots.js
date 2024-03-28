@@ -19,3 +19,4 @@ document.addEventListener('DOMContentLoaded', function () {
     snapshot2Img.alt = 'Geen screenshot gevonden';
   }
 });
+d;
