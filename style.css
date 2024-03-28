@@ -66,3 +66,15 @@ canvas {
   text-align: center;
   z-index: 1;
 }
+
+#endquote {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 100px;
+  color: fuchsia;
+  font-family: 'verdana';
+  text-align: center;
+  z-index: 1;
+}

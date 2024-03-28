@@ -36,12 +36,9 @@ video.addEventListener('play', () => {
 
     // Maak een snapshot van het canvas als er nog geen snapshot is genomen
     if (!snapshotTaken && detections.length > 0) {
-      const snapshot = canvas.toDataURL('image/png');
+      // Maak een snapshot van het video element
+      captureImage();
 
-      console.log('Snapshot genomen:', snapshot);
-      snapshotTaken = true; // Markeer dat er een snapshot is genomen
-
-      localStorage.setItem('snapshot', snapshot);
       console.log(detections);
       localStorage.setItem(
         'expression',
@@ -54,3 +51,12 @@ video.addEventListener('play', () => {
 });
 // Laad de modellen en start de video wanneer de pagina geladen is
 loadModels();
+
+function captureImage() {
+  const canvas = document.createElement('canvas');
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  canvas.getContext('2d').drawImage(video, 0, 0);
+  const data = canvas.toDataURL('image/png');
+  localStorage.setItem('snapshot', data);
+}

@@ -18,5 +18,15 @@ document.addEventListener('DOMContentLoaded', function () {
   } else {
     snapshot2Img.alt = 'Geen screenshot gevonden';
   }
+  console.log('snapshot', snapshot);
+  console.log('snapshot2', snapshot2);
 });
-d;
+
+function startNextPageTimer() {
+  setTimeout(() => {
+    console.log('Navigeren naar de volgende pagina...');
+    window.location.href = 'endquote.html';
+  }, 7000);
+}
+
+startNextPageTimer(startNextPageTimer());

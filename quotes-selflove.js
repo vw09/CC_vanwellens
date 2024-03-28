@@ -159,7 +159,7 @@ function startNextPageTimer() {
   setTimeout(() => {
     console.log('Navigeren naar de volgende pagina...');
     window.location.href = 'snapshots.html';
-  }, 7000); // 5 seconden (5000 milliseconden)
+  }, 7000);
 }
 
 // Start het proces door de microfoon te activeren

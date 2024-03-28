@@ -3,92 +3,49 @@ window.onload = () => {
   welkomElement.textContent = 'SCREAM IN SERENITY!';
 
   const subWelkomElement = document.getElementById('subtekst-welcome');
-  subWelkomElement.textContent = 'Ga voor het scherm staan.';
+  subWelkomElement.textContent =
+    'Ga voor het scherm staan. Kies een knop naar keuzen';
 
   setTimeout(() => {
     window.location.href = 'quotes-combined.html'; // Navigeer naar de volgende pagina na 10 seconden
   }, 5000);
 };
 
-let Gpio = require('onoff').Gpio;
+const Gpio = require('onoff').Gpio; // Importeer de GPIO-bibliotheek
+const exec = require('child_process').exec; // Importeer de exec-functie om commando's uit te voeren
 
-const knopBlauw = new Gpio(21, 'in', 'rising', { debounceTimeout: 10 });
-const knopRood = new Gpio(20, 'in', 'rising', { debounceTimeout: 10 });
-const knopWit = new Gpio(16, 'in', 'rising', { debounceTimeout: 10 });
-const knopGroen = new Gpio(12, 'in', 'rising', { debounceTimeout: 10 });
+// Definieer de GPIO-pinnen die zijn verbonden met de knoppen
+const buttonPins = [21, 20, 16, 12];
 
-// Definieer een variabele om de laatst ingedrukte knop bij te houden
-let lastPressed = '';
+// Maak een array met de URL's die overeenkomen met elke knop
+const urls = [
+  'http://quotes-combined.html',
+  'http://quotes-laugh.html',
+  'http://quotes-school.html',
+  'http://quotes-selflove.html',
+];
 
-function setupButtons() {
-  knopBlauw.watch(function (err) {
+// Initialiseer elke knop als een invoer en voeg een event handler toe voor wanneer de knop wordt ingedrukt
+buttonPins.forEach((pin) => {
+  const button = new Gpio(pin, 'in', 'both');
+
+  button.watch((err, value) => {
     if (err) {
-      console.error('There was an error', err);
+      console.error(
+        'Er is een fout opgetreden bij het lezen van de knop:',
+        err,
+      );
       return;
     }
-    console.log('blauw');
-    lastPressed = 'blauw';
-    openMapBasedOnButton();
-  });
 
-  knopWit.watch(function (err) {
-    if (err) {
-      console.error('There was an error', err);
-      return;
+    if (value === 0) {
+      const url = urls[buttonPins.indexOf(pin)];
+      openWebpage(url);
     }
-    console.log('wit');
-    lastPressed = 'wit';
-    openMapBasedOnButton();
   });
+});
 
-  knopGroen.watch(function (err) {
-    if (err) {
-      console.error('There was an error', err);
-      return;
-    }
-    console.log('groen');
-    lastPressed = 'groen';
-    openMapBasedOnButton();
-  });
-
-  knopRood.watch(function (err) {
-    if (err) {
-      console.error('There was an error', err);
-      return;
-    }
-    console.log('rood');
-    lastPressed = 'rood';
-    openMapBasedOnButton();
-  });
+// Functie om een webpagina te openen
+function openWebpage(url) {
+  exec(`chromium-browser ${url}`); // Open de webpagina in de standaard webbrowser
 }
-
-// Functie om de map te openen op basis van de laatst ingedrukte knop
-function openMapBasedOnButton() {
-  switch (lastPressed) {
-    case 'blauw':
-      openMap('quotes-selflove');
-      break;
-    case 'wit':
-      openMap('quotes-school');
-      break;
-    case 'groen':
-      openMap('quotes-laugh');
-      break;
-    case 'rood':
-      openMap('quotes-combined');
-      break;
-    default:
-      console.log('Geen actie uitgevoerd. Onbekende knop.');
-  }
-}
-
-// Functie om de map te openen
-function openMap(mapName) {
-  // Hier zou je code moeten plaatsen om de map te openen
-  // Bijvoorbeeld met behulp van 'fs' module
-  console.log(`Opening ${mapName}...`);
-  // Voorbeeld: fs.mkdirSync(mapName, { recursive: true });
-}
-
-// Roep de setupButtons functie aan om de knoppen in te stellen
-setupButtons();
