@@ -158,7 +158,7 @@ function decibelToColor(decibel) {
 function startNextPageTimer() {
   setTimeout(() => {
     console.log('Navigeren naar de volgende pagina...');
-    window.location.href = 'snapshots-making.html.';
+    window.location.href = 'snapshots-making.html';
   }, 7000); // 5 seconden (5000 milliseconden)
 }
 
