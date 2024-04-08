@@ -45,7 +45,7 @@ video.addEventListener('play', () => {
         JSON.stringify(detections[0].expressions),
       );
 
-      location.assign('/intro.html');
+      location.assign('/snapshots.html');
     }
   }, 7000);
 });

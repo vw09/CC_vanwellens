@@ -10,13 +10,13 @@ document.addEventListener('DOMContentLoaded', function () {
   if (snapshot) {
     snapshotImg.src = snapshot;
   } else {
-    snapshotImg.alt = 'Geen screenshot gevonden';
+    snapshotImg.alt = 'screen 1 niet gevonden';
   }
 
   if (snapshot2) {
     snapshot2Img.src = snapshot2;
   } else {
-    snapshot2Img.alt = 'Geen screenshot gevonden';
+    snapshot2Img.alt = 'screen 2 niet gevonden';
   }
   console.log('snapshot', snapshot);
   console.log('snapshot2', snapshot2);
