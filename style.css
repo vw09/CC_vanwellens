@@ -67,7 +67,6 @@ canvas {
   color: #adff2f;
   font-family: 'Chewy';
   text-align: center;
-  z-index: 1;
 }
 
 .confetti-container {
@@ -75,7 +74,7 @@ canvas {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 2; /* Zorg ervoor dat de confetti-container een hogere z-index heeft dan de andere elementen */
+  z-index: 10; /* Zorg ervoor dat de confetti-container een hogere z-index heeft dan de andere elementen */
 }
 
 .confetti {
@@ -102,4 +101,14 @@ canvas {
   to {
     opacity: 1;
   }
+}
+
+/* Voor schermen kleiner dan 600px breed */
+@media only screen and (max-width: 600px) {
+  /* Voeg hier je specifieke stijlen toe voor kleine schermen */
+}
+
+/* Voor schermen groter dan 600px breed */
+@media only screen and (min-width: 601px) {
+  /* Voeg hier je specifieke stijlen toe voor grotere schermen */
 }

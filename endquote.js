@@ -9,7 +9,7 @@ function createConfetti() {
 
   setTimeout(() => {
     confetti.remove();
-  }, 2000); // Remove confetti after 2 seconds
+  }, 20000); // Remove confetti after 2 seconds
 }
 
 function getRandomColor() {
