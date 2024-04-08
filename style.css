@@ -1,10 +1,5 @@
 body {
-  background: linear-gradient(
-    to bottom right,
-    #ffcc00,
-    #ff6699,
-    #00ccff
-  ); /* Voeg hier je gewenste kleuren toe */
+  background: linear-gradient(to bottom right, #ffd700, #ff69b4, #00bfff);
   margin: 0;
   padding: 0;
   width: 100vw;
@@ -17,7 +12,8 @@ body {
 #frequencyData {
   font-size: 18px;
   margin-bottom: 20px;
-  color: white;
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Voeg een subtiele schaduw toe */
 }
 
 #container-combined {
@@ -30,7 +26,8 @@ body {
   position: absolute;
   font-size: 70px;
   display: none;
-  color: rgb(19, 238, 202); /* Stand-by kleur */
+  color: #ff1493; /* Felle roze kleur */
+  animation: fadeIn 1s ease-in-out forwards;
 }
 
 canvas {
@@ -43,19 +40,8 @@ canvas {
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 100px;
-  color: fuchsia;
-  font-family: 'verdana';
-  text-align: center;
-  z-index: 1;
-}
-#subtekst-welcome {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 50px;
-  color: fuchsia;
-  font-family: 'verdana';
+  color: #ff69b4; /* Felroze kleur */
+  font-family: 'Chewy', cursive; /* Speels en handgeschreven lettertype */
   text-align: center;
   z-index: 1;
 }
@@ -66,8 +52,8 @@ canvas {
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 100px;
-  color: fuchsia;
-  font-family: 'verdana';
+  color: #00bfff; /* Felblauwe kleur */
+  font-family: 'Chewy', sans-serif; /* Vetgedrukt en afgerond lettertype */
   text-align: center;
   z-index: 1;
 }
@@ -78,8 +64,8 @@ canvas {
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 100px;
-  color: fuchsia;
-  font-family: 'verdana';
+  color: #adff2f; /* Felgele groene kleur */
+  font-family: 'Chewy';
   text-align: center;
   z-index: 1;
 }
@@ -90,12 +76,6 @@ canvas {
   animation: fadeIn 1s ease-in-out forwards;
 }
 
-/* Voeg nieuwe achtergrondkleur toe op basis van geluidsniveau */
-body {
-  /* Voeg alleen nieuwe stijlregels toe, zonder bestaande te overschrijven */
-  transition: background-color 0.5s ease;
-}
-
 /* Voeg nieuwe animatie toe voor citaten */
 @keyframes fadeIn {
   /* Voeg alleen nieuwe animatie toe, zonder bestaande te overschrijven */
@@ -104,15 +84,5 @@ body {
   }
   to {
     opacity: 1;
-  }
-}
-
-/* Animaties voor citaten */
-@keyframes quoteAnimation {
-  0% {
-    transform: scale(0);
-  }
-  100% {
-    transform: scale(1);
   }
 }
