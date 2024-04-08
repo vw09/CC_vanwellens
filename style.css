@@ -1,5 +1,10 @@
 body {
-  background-color: black;
+  background: linear-gradient(
+    to bottom right,
+    #ffcc00,
+    #ff6699,
+    #00ccff
+  ); /* Voeg hier je gewenste kleuren toe */
   margin: 0;
   padding: 0;
   width: 100vw;
