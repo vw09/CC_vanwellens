@@ -71,6 +71,19 @@ canvas {
   text-align: center;
 }
 
+#foto-galerij {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 80px;
+  color: #ffffff;
+  font-family: 'Chewy';
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+}
+
 .confetti-container {
   position: absolute;
   width: 100%;
