@@ -1,5 +1,5 @@
 const frequencyData = document.getElementById('frequencyData');
-const container = document.getElementById('container-laugh');
+const container = document.getElementById('container-combined');
 
 let analyser;
 let bufferLength;
@@ -54,21 +54,25 @@ async function loadRandomQuote(decibel) {
     quoteElement.textContent = randomQuote.textContent;
 
     let leftPosition, topPosition;
-    do {
-      leftPosition =
-        Math.random() * (container.offsetWidth - quoteElement.offsetWidth);
-      topPosition =
-        Math.random() * (container.offsetHeight - quoteElement.offsetHeight);
-    } while (overlapWithExistingQuotes(leftPosition, topPosition, quotes));
+    const quoteWidth = quoteElement.offsetWidth;
+    const quoteHeight = quoteElement.offsetHeight;
 
-    quoteElement.style.position = 'absolute';
+    // Bereken de maximale toegestane positie binnen het zichtbare deel van de pagina
+    const maxLeft = window.innerWidth - quoteWidth;
+    const maxTop = window.innerHeight - quoteHeight;
+
+    // Kies willekeurige positie binnen het zichtbare deel van de pagina
+    leftPosition = Math.random() * maxLeft;
+    topPosition = Math.random() * maxTop;
+
+    quoteElement.style.position = 'fixed'; // Verander naar fixed positie om te voorkomen dat het document scrollt
     quoteElement.style.display = 'block';
     quoteElement.style.left = `${leftPosition}px`;
     quoteElement.style.top = `${topPosition}px`;
 
     quoteElement.style.color = decibelToColor(decibel);
 
-    container.appendChild(quoteElement);
+    document.body.appendChild(quoteElement); // Voeg quote toe aan body
 
     quoteCounter++;
 
@@ -76,29 +80,6 @@ async function loadRandomQuote(decibel) {
       startNextPageTimer();
     }
   }
-}
-
-function overlapWithExistingQuotes(leftPosition, topPosition, quotes) {
-  const newQuoteRect = {
-    left: leftPosition,
-    top: topPosition,
-    right: leftPosition + 200, // Ga uit van een vaste breedte voor citaten
-    bottom: topPosition + 70, // Ga uit van een vaste hoogte voor citaten
-  };
-
-  for (const quote of quotes) {
-    const quoteRect = quote.getBoundingClientRect();
-    if (
-      newQuoteRect.left < quoteRect.right &&
-      newQuoteRect.right > quoteRect.left &&
-      newQuoteRect.top < quoteRect.bottom &&
-      newQuoteRect.bottom > quoteRect.top
-    ) {
-      return true; // Overlapt met bestaand citaat
-    }
-  }
-
-  return false; // Geen overlap
 }
 
 function displayFrequencyData(average) {
@@ -162,6 +143,4 @@ function startNextPageTimer() {
   }, 7000); // 5 seconden (5000 milliseconden)
 }
 
-// Start het proces door de microfoon te activeren
-document.querySelector('body').addEventListener('click', startMicrofoon);
-startMicrofoon();
+document.addEventListener('click', startMicrofoon);
