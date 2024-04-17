@@ -143,7 +143,4 @@ function startNextPageTimer() {
   }, 7000); // 5 seconden (5000 milliseconden)
 }
 
-// Start het proces door de microfoon te activeren
-document.addEventListener('DOMContentLoaded', () => {
-  startMicrofoon();
-});
+document.addEventListener('click', startMicrofoon);
