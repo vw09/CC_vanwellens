@@ -37,7 +37,7 @@ function detecteerGeluidsniveau() {
   const drempelWaarde = 10;
 
   if (gemiddeldGeluidsniveau > drempelWaarde) {
-    console.log('Gemiddeld geluidsniveau overschrijdt drempelwaarde.');
+    console.log('Er wordt geluid gedetecteerd!');
     loadRandomQuote(gemiddeldGeluidsniveau);
   }
 
@@ -45,7 +45,7 @@ function detecteerGeluidsniveau() {
 }
 
 async function loadRandomQuote(decibel) {
-  if (quoteCounter < 8) {
+  if (quoteCounter < 7) {
     const quotes = Array.from(container.querySelectorAll('p'));
     const randomQuote = quotes[quoteIndex];
     quoteIndex = (quoteIndex + 1) % quotes.length;
@@ -53,19 +53,23 @@ async function loadRandomQuote(decibel) {
     const quoteElement = document.createElement('p');
     quoteElement.textContent = randomQuote.textContent;
 
-    let leftPosition, topPosition;
     const quoteWidth = quoteElement.offsetWidth;
     const quoteHeight = quoteElement.offsetHeight;
 
-    // Bereken de maximale toegestane positie binnen het zichtbare deel van de pagina
-    const maxLeft = window.innerWidth - quoteWidth;
-    const maxTop = window.innerHeight - quoteHeight;
+    // Bepaal minimale afstand tussen elke quote
+    const minDistance = 20;
 
-    // Kies willekeurige positie binnen het zichtbare deel van de pagina
-    leftPosition = Math.random() * maxLeft;
-    topPosition = Math.random() * maxTop;
+    // Bepaal de breedte en hoogte van het scherm
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
 
-    quoteElement.style.position = 'fixed'; // Verander naar fixed positie om te voorkomen dat het document scrollt
+    let leftPosition, topPosition;
+
+    // Bepaal willekeurige posities voor de quote
+    leftPosition = Math.random() * (screenWidth - quoteWidth - minDistance);
+    topPosition = Math.random() * (screenHeight - quoteHeight - minDistance);
+
+    quoteElement.style.position = 'absolute';
     quoteElement.style.display = 'block';
     quoteElement.style.left = `${leftPosition}px`;
     quoteElement.style.top = `${topPosition}px`;
@@ -76,7 +80,7 @@ async function loadRandomQuote(decibel) {
 
     quoteCounter++;
 
-    if (quoteCounter === 8) {
+    if (quoteCounter === 7) {
       startNextPageTimer();
     }
   }
@@ -107,7 +111,7 @@ function decibelToColor(decibel) {
   } else if (decibel > 70 && decibel <= 80) {
     color = '#9D0759'; // Fuchsia
   } else {
-    color = '#ffffff'; // Zwart (voor decibels boven 80)
+    color = '#ffffff'; // wit (voor decibels boven 80)
   }
 
   // Pas de helderheid aan op basis van het geluidsniveau
