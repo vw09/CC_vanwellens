@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const frequencyData = document.getElementById('frequencyData');
 const container = document.getElementById('container-combined');
 
@@ -148,3 +149,11 @@ function startNextPageTimer() {
 }
 
 document.addEventListener('click', startMicrofoon);
+
+function resetQuotesCombined() {
+  analyser = null;
+  bufferLength;
+  dataArray;
+  quoteIndex = 0;
+  quoteCounter = 0;
+}
