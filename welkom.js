@@ -14,18 +14,18 @@ function startWebsocket() {
     const data = e.data;
     console.log(data);
 
-    if (data === 'white') {
+    if (data === '21') {
       window.location.href = 'quotes-combined.html';
     }
-    if (data === 'green') {
+    if (data === '20') {
       window.location.href = 'quotes-laugh.html';
     }
 
-    if (data === 'red') {
+    if (data === '16') {
       window.location.href = 'quotes-school.html';
     }
 
-    if (data === 'blue') {
+    if (data === '12') {
       window.location.href = 'quotes-selflove.html';
     }
   };
