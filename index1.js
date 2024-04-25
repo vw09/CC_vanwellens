@@ -11,18 +11,18 @@ function startWebsocket() {
     console.log(data);
 
     if (data === '40') {
-      window.location.href = 'quotes-combined.html';
+      window.location.href = 'index2.html';
     }
     if (data === '38') {
-      window.location.href = 'quotes-laugh.html';
+      window.location.href = 'index2.html';
     }
 
     if (data === '36') {
-      window.location.href = 'quotes-school.html';
+      window.location.href = 'index2.html';
     }
 
     if (data === '32') {
-      window.location.href = 'quotes-selflove.html';
+      window.location.href = 'index2.html';
     }
   };
 }

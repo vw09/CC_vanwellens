@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 const frequencyData = document.getElementById('frequencyData');
-const container = document.getElementById('container-combined');
+const container = document.getElementById('container-selflove');
 
 let analyser;
 let bufferLength;

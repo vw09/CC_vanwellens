@@ -8,6 +8,54 @@ let dataArray;
 let quoteIndex = 0;
 let quoteCounter = 0;
 
+// Array met quotes
+const quotes = [
+  "Don't let idiots ruin your day.",
+  'Why be moody when you can shake yo booty.',
+  "Never do the same mistake twice. Unless he's hot!",
+  'Be like the sun keep on shining and let them burn.',
+  'An apple a day keeps anyone away if you throw it hard enough.',
+  'Whatever you must do today... Do it with the confidence of a 4-year old in a batman cape.',
+  'If life give you lemons... add Vodka.',
+  "When life shuts a door... open it again. It's a door. That's how they work.",
+  'Knowledge is knowing a tomato is a fruit. Wisdom is not putting it in a fruit salad.',
+  'Life is short. Smile while you still have teeth.',
+  'After Tuesday, even the calendar goes W T F',
+  "When something goes wrong in your life, just yell, 'PLOT TWIST!' and move on.",
+  'Slow progress is better than no progress. Stay positive and never give up.',
+  'The capacity to learn is a gift; the ability to learn is a skill; the willingness to learn is a choice.',
+  "Success is no accident. It's hard work, perseverance, learning, studying, sacrifice and most of all, love of what you are doing or learning to do.",
+  'Your mindset is everything. It shapes your world and your reality, choose wisely!',
+  "Success does not lie in the 'results' but in 'efforts', 'being' the best is not so important, 'doing' the best is all that matters...",
+  "If the plan doesn't work, change the plan but never the goal.",
+  'Focus on the step in front of you, not the whole staircase.',
+  'Your direction is more important than your speed.',
+  "Don't stop until you're proud.",
+  'A negative mind will never give you a positive life.',
+  'You carry so much love in your heart. Give some to yourself.',
+  'You have always been enough!',
+  'You owe it to yourself to become everything you were born with.',
+  "Don't let insecurity ruin the beauty you were born with.",
+  'You are magic, own that shit!',
+  'Life is too short to spend it at war with yourself.',
+  "It's not selfish to make your happiness your main priority.",
+  'Your commitment to being authentic has to be greater than your desire for approval.',
+  "Don't compare your life to others. There's no comparison between the sun and the moon; they shine when it's their time.",
+  "Your life isn't yours if you always care what others think.",
+  'If you focus on the hurt, you will continue to suffer. If you focus on the lesson, you will continue to grow.',
+  'Reminder: You can be a good person with a kind heart and still tell people to fuck off when needed.',
+  'To the world, you may be one person, but to one person you may be the world.',
+];
+
+// Vaste posities voor de eerste 5 quotes
+const fixedPositions = [
+  { x: 100, y: 100 }, // Linksboven
+  { x: 800, y: 100 }, // Rechtsboven
+  { x: 400, y: 300 }, // Midden
+  { x: 100, y: 500 }, // Linksonder
+  { x: 800, y: 500 }, // Rechtsonder
+];
+
 async function startMicrofoon() {
   try {
     const audioContext = new AudioContext();
@@ -46,43 +94,40 @@ function detecteerGeluidsniveau() {
 }
 
 async function loadRandomQuote(decibel) {
-  if (quoteCounter < 7) {
-    const quotes = Array.from(container.querySelectorAll('p'));
-    const randomQuote = quotes[quoteIndex];
-    quoteIndex = (quoteIndex + 1) % quotes.length;
+  if (quoteCounter < 5) {
+    // We want only 5 quotes at fixed positions
+    const position = fixedPositions[quoteCounter]; // Get the fixed position for this quote
 
-    const quoteElement = document.createElement('p');
-    quoteElement.textContent = randomQuote.textContent;
+    // Check if the position is available (not overlapping with existing quotes)
+    if (!isOverlapping(position.x, position.y)) {
+      const randomQuotes = selectRandomQuotes();
+      const quote = randomQuotes[quoteIndex];
+      quoteIndex = (quoteIndex + 1) % randomQuotes.length;
 
-    const quoteWidth = quoteElement.offsetWidth;
-    const quoteHeight = quoteElement.offsetHeight;
+      const quoteElement = document.createElement('p');
+      quoteElement.textContent = quote;
 
-    // Bepaal minimale afstand tussen elke quote
-    const minDistance = 20;
+      const quoteWidth = quoteElement.offsetWidth;
+      const quoteHeight = quoteElement.offsetHeight;
 
-    // Bepaal de breedte en hoogte van het scherm
-    const screenWidth = window.innerWidth;
-    const screenHeight = window.innerHeight;
+      quoteElement.style.position = 'absolute';
+      quoteElement.style.display = 'block';
+      quoteElement.style.left = `${position.x}px`; // Use the x-coordinate of the fixed position
+      quoteElement.style.top = `${position.y}px`; // Use the y-coordinate of the fixed position
 
-    let leftPosition, topPosition;
+      quoteElement.style.color = decibelToColor(decibel);
 
-    // Bepaal willekeurige posities voor de quote
-    leftPosition = Math.random() * (screenWidth - quoteWidth - minDistance);
-    topPosition = Math.random() * (screenHeight - quoteHeight - minDistance);
+      document.body.appendChild(quoteElement); // Add quote to the body
 
-    quoteElement.style.position = 'absolute';
-    quoteElement.style.display = 'block';
-    quoteElement.style.left = `${leftPosition}px`;
-    quoteElement.style.top = `${topPosition}px`;
+      quoteCounter++;
 
-    quoteElement.style.color = decibelToColor(decibel);
-
-    document.body.appendChild(quoteElement); // Voeg quote toe aan body
-
-    quoteCounter++;
-
-    if (quoteCounter === 7) {
-      startNextPageTimer();
+      if (quoteCounter === 5) {
+        // We now have 5 quotes at fixed positions
+        startNextPageTimer();
+      }
+    } else {
+      // If the position is not available, log a message or handle it accordingly
+      console.log('Position is not available for the quote.');
     }
   }
 }
@@ -152,8 +197,42 @@ document.addEventListener('click', startMicrofoon);
 
 function resetQuotesCombined() {
   analyser = null;
-  bufferLength;
-  dataArray;
+  bufferLength = null;
+  dataArray = null;
   quoteIndex = 0;
   quoteCounter = 0;
+}
+
+function selectRandomQuotes() {
+  const selectedQuotes = [];
+  while (selectedQuotes.length < 7) {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    const randomQuote = quotes[randomIndex];
+    if (!selectedQuotes.includes(randomQuote)) {
+      selectedQuotes.push(randomQuote);
+    }
+  }
+  return selectedQuotes;
+}
+
+function isOverlapping(x, y, width, height) {
+  const quotes = document.querySelectorAll('p');
+  for (let i = 0; i < quotes.length; i++) {
+    const quote = quotes[i];
+    const rect = quote.getBoundingClientRect();
+    const x2 = rect.left;
+    const y2 = rect.top;
+    const width2 = rect.width;
+    const height2 = rect.height;
+
+    if (
+      x < x2 + width2 &&
+      x + width > x2 &&
+      y < y2 + height2 &&
+      y + height > y2
+    ) {
+      return true;
+    }
+  }
+  return false;
 }
