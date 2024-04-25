@@ -96,19 +96,19 @@ function decibelToColor(decibel) {
 
   // Bepaal kleur op basis van decibelbereik
   if (decibel >= 0 && decibel <= 10) {
-    color = '#E15554'; // Rood
+    color = '#A4FFF9'; // Rood
   } else if (decibel > 10 && decibel <= 20) {
-    color = '#E15554'; // Rood
+    color = '#00DDFF'; // Rood
   } else if (decibel > 20 && decibel <= 30) {
-    color = '#E15554'; // Rood
+    color = '#05C7F2'; // Rood
   } else if (decibel > 30 && decibel <= 40) {
-    color = '#C7EFCF'; // Groen
+    color = '#2CAAF1'; // Groen
   } else if (decibel > 40 && decibel <= 50) {
-    color = '#96C5F7'; // Blauw
+    color = '#B07ABF'; // Blauw
   } else if (decibel > 50 && decibel <= 60) {
-    color = '#FFBA49'; // Geel
+    color = '#F26DC0'; //
   } else if (decibel > 60 && decibel <= 70) {
-    color = '#CA7DF9'; // Paars
+    color = '#F25CAF'; //
   } else if (decibel > 70 && decibel <= 80) {
     color = '#9D0759'; // Fuchsia
   } else {

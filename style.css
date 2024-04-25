@@ -1,5 +1,7 @@
 body {
-  background: linear-gradient(to bottom right, #ffd700, #ff69b4, #00bfff);
+  background-image: url('background.png');
+  background-size: cover;
+  background-position: center;
   margin: 0;
   padding: 0;
   width: 100vw;
@@ -26,6 +28,51 @@ body {
 }
 
 #container-combined p {
+  position: absolute;
+  display: none;
+  color: #ffffff;
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+#container-laugh {
+  position: relative;
+  font-size: 40px;
+  width: 100%;
+  height: 100vh;
+  font-size: large;
+}
+
+#container-laugh p {
+  position: absolute;
+  display: none;
+  color: #ffffff;
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+#container-school {
+  position: relative;
+  font-size: 40px;
+  width: 100%;
+  height: 100vh;
+  font-size: large;
+}
+
+#container-school p {
+  position: absolute;
+  display: none;
+  color: #ffffff;
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+#container-selflove {
+  position: relative;
+  font-size: 40px;
+  width: 100%;
+  height: 100vh;
+  font-size: large;
+}
+
+#container-selflove p {
   position: absolute;
   display: none;
   color: #ffffff;
