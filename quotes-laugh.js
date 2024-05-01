@@ -45,6 +45,23 @@ function detecteerGeluidsniveau() {
   displayFrequencyData(gemiddeldGeluidsniveau);
 }
 
+function checkOverlap(newQuote) {
+  const existingQuotes = document.querySelectorAll('body > p');
+  for (let i = 0; i < existingQuotes.length; i++) {
+    const rect1 = existingQuotes[i].getBoundingClientRect();
+    const rect2 = newQuote.getBoundingClientRect();
+    if (
+      rect1.left < rect2.right &&
+      rect1.right > rect2.left &&
+      rect1.top < rect2.bottom &&
+      rect1.bottom > rect2.top
+    ) {
+      return true;
+    }
+  }
+  return false;
+}
+
 async function loadRandomQuote(decibel) {
   if (quoteCounter < 7) {
     const quotes = Array.from(container.querySelectorAll('p'));
@@ -63,8 +80,15 @@ async function loadRandomQuote(decibel) {
     // Bepaal de breedte en hoogte van het scherm
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
-
     let leftPosition, topPosition;
+
+    do {
+      leftPosition = Math.random() * (screenWidth - quoteWidth - minDistance);
+      topPosition = Math.random() * (screenHeight - quoteHeight - minDistance);
+
+      quoteElement.style.left = `${leftPosition}px`;
+      quoteElement.style.top = `${topPosition}px`;
+    } while (checkOverlap(quoteElement));
 
     // Bepaal willekeurige posities voor de quote
     leftPosition = Math.random() * (screenWidth - quoteWidth - minDistance);
