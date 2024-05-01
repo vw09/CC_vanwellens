@@ -8,6 +8,7 @@ body {
   height: 100vh;
   font-size: 65px;
   display: flex;
+  font-family: Bubblegum Sans;
   justify-content: center;
   align-items: center;
 }
@@ -90,7 +91,7 @@ canvas {
   transform: translate(-50%, -50%);
   font-size: 100px;
   color: #ffffff;
-  font-family: 'Baloo Bhai';
+  font-family: 'Varela Round:';
   text-align: center;
   z-index: 1;
 }
@@ -114,7 +115,7 @@ canvas {
   transform: translate(-50%, -50%);
   font-size: 100px;
   color: #ffffff;
-  font-family: 'Baloo Bhai';
+  font-family: 'Bubblegum Sans';
   text-align: center;
   z-index: 1;
 }
@@ -126,7 +127,7 @@ canvas {
   transform: translate(-50%, -50%);
   font-size: 80px;
   color: #ffffff;
-  font-family: 'Bangers';
+  font-family: 'Bubblegum Sans';
   text-align: center;
 }
 
@@ -146,7 +147,7 @@ canvas {
   margin: 0 20px;
   font-size: 55px;
   color: #ffffff;
-  font-family: 'Baloo Bhai 2';
+  font-family: 'Bubblegum Sans 2';
 }
 
 .confetti-container {
