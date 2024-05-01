@@ -48,6 +48,11 @@ window.onload = function () {
     const quoteElement = document.createElement('p');
     quoteElement.textContent = quote;
     document.body.appendChild(quoteElement);
+
+    // Redirect to index.html after 5 seconds
+    setTimeout(function () {
+      window.location.href = 'index.html';
+    }, 10000);
   }
 };
 
