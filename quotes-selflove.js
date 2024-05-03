@@ -163,7 +163,7 @@ function startNextPageTimer() {
   setTimeout(() => {
     console.log('Navigeren naar de volgende pagina...');
     window.location.href = 'snapshots-making.html';
-  }, 7000); // 5 seconden (5000 milliseconden)
+  }, 7000);
 }
 
 document.addEventListener('click', startMicrofoon);

@@ -47,14 +47,18 @@ window.onload = function () {
     // Display the quote on the page
     const quoteElement = document.createElement('p');
     quoteElement.textContent = quote;
+    quoteElement.style.display = 'block';
+    quoteElement.style.textAlign = 'center';
+    quoteElement.style.width = '500px';
+    quoteElement.style.transform = `translate(-250px, -75px) rotate(${Math.random() * 6 - 3}deg) scale(${Math.random() * 0.5 + 0.5})`;
     document.body.appendChild(quoteElement);
 
-    // Redirect to index.html after 5 seconds
     setTimeout(function () {
       window.location.href = 'index.html';
     }, 10000);
   }
 };
+console.log(setTimeout);
 
 const container = document.getElementById('confetti-container');
 
