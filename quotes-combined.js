@@ -49,11 +49,11 @@ const quotes = [
 
 // Vaste posities voor de eerste 5 quotes
 const fixedPositions = [
-  { x: 100, y: 100 }, // Linksboven
-  { x: 800, y: 100 }, // Rechtsboven
-  { x: 400, y: 300 }, // Midden
-  { x: 100, y: 500 }, // Linksonder
-  { x: 800, y: 500 }, // Rechtsonder
+  { x: '50vw', y: '50vh' },
+  { x: '20vw', y: '80vh' },
+  { x: '80vw', y: '20vh' },
+  { x: '80vw', y: '80vh' },
+  { x: '20vw', y: '20vh' },
 ];
 
 async function startMicrofoon() {
@@ -99,35 +99,31 @@ async function loadRandomQuote(decibel) {
     const position = fixedPositions[quoteCounter]; // Get the fixed position for this quote
 
     // Check if the position is available (not overlapping with existing quotes)
-    if (!isOverlapping(position.x, position.y)) {
-      const randomQuotes = selectRandomQuotes();
-      const quote = randomQuotes[quoteIndex];
-      quoteIndex = (quoteIndex + 1) % randomQuotes.length;
+    const randomQuotes = selectRandomQuotes();
+    const quote = randomQuotes[quoteIndex];
+    quoteIndex = (quoteIndex + 1) % randomQuotes.length;
 
-      const quoteElement = document.createElement('p');
-      quoteElement.textContent = quote;
+    const quoteElement = document.createElement('p');
+    quoteElement.textContent = quote;
 
-      const quoteWidth = quoteElement.offsetWidth;
-      const quoteHeight = quoteElement.offsetHeight;
+    quoteElement.style.position = 'absolute';
+    quoteElement.style.display = 'block';
+    quoteElement.style.textAlign = 'center';
+    quoteElement.style.width = '500px';
+    quoteElement.style.margin = '0';
+    quoteElement.style.transform = `translate(-250px, -75px) rotate(${Math.random() * 6 - 3}deg) scale(${Math.random() * 0.5 + 0.5})`;
+    quoteElement.style.left = `${position.x}`; // Use the x-coordinate of the fixed position
+    quoteElement.style.top = `${position.y}`; // Use the y-coordinate of the fixed position
 
-      quoteElement.style.position = 'absolute';
-      quoteElement.style.display = 'block';
-      quoteElement.style.left = `${position.x}px`; // Use the x-coordinate of the fixed position
-      quoteElement.style.top = `${position.y}px`; // Use the y-coordinate of the fixed position
+    quoteElement.style.color = decibelToColor(decibel);
 
-      quoteElement.style.color = decibelToColor(decibel);
+    document.body.appendChild(quoteElement); // Add quote to the body
 
-      document.body.appendChild(quoteElement); // Add quote to the body
+    quoteCounter++;
 
-      quoteCounter++;
-
-      if (quoteCounter === 5) {
-        // We now have 5 quotes at fixed positions
-        startNextPageTimer();
-      }
-    } else {
-      // If the position is not available, log a message or handle it accordingly
-      console.log('Position is not available for the quote.');
+    if (quoteCounter === 5) {
+      // We now have 5 quotes at fixed positions
+      // startNextPageTimer();
     }
   }
 }
@@ -213,26 +209,4 @@ function selectRandomQuotes() {
     }
   }
   return selectedQuotes;
-}
-
-function isOverlapping(x, y, width, height) {
-  const quotes = document.querySelectorAll('p');
-  for (let i = 0; i < quotes.length; i++) {
-    const quote = quotes[i];
-    const rect = quote.getBoundingClientRect();
-    const x2 = rect.left;
-    const y2 = rect.top;
-    const width2 = rect.width;
-    const height2 = rect.height;
-
-    if (
-      x < x2 + width2 &&
-      x + width > x2 &&
-      y < y2 + height2 &&
-      y + height > y2
-    ) {
-      return true;
-    }
-  }
-  return false;
 }
