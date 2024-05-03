@@ -8,6 +8,32 @@ let dataArray;
 let quoteIndex = 0;
 let quoteCounter = 0;
 
+// Array met quotes
+const quotes = [
+  'You carry so mutch love in your heart. Give some to yourself.',
+  'You have always been enough!',
+  'You owe it to youreself to become everything you were born with.',
+  "Don't let insecurity ruin the beauty you were born with.",
+  'You are magic, own that shit!',
+  'Life is too short to spend it at war with your self.',
+  'Is not selfish to make your happines your main priority.',
+  'Your commitment to being authentic has to be greater than your desire to approvel.',
+  "Don't compare your life to others. There's no comparison between the sun and the moon they shine when it's their time.",
+  "Your life isn't yours if you always care what others think",
+  'If you focus in the hurt, you will continue to suffer. If you focus on the lesson, you will continue to grow.',
+  'Reminder: You can be a good person with a kind heart and still tell people to fuck off when needed.',
+  'To the world, you may be one person, but to one persone you may be the world.',
+];
+
+// Vaste posities voor de eerste 5 quotes
+const fixedPositions = [
+  { x: '50vw', y: '50vh' },
+  { x: '20vw', y: '80vh' },
+  { x: '80vw', y: '20vh' },
+  { x: '80vw', y: '80vh' },
+  { x: '20vw', y: '20vh' },
+];
+
 async function startMicrofoon() {
   try {
     const audioContext = new AudioContext();
@@ -46,42 +72,34 @@ function detecteerGeluidsniveau() {
 }
 
 async function loadRandomQuote(decibel) {
-  if (quoteCounter < 7) {
-    const quotes = Array.from(container.querySelectorAll('p'));
-    const randomQuote = quotes[quoteIndex];
-    quoteIndex = (quoteIndex + 1) % quotes.length;
+  if (quoteCounter < 5) {
+    // We want only 5 quotes at fixed positions
+    const position = fixedPositions[quoteCounter]; // Get the fixed position for this quote
+
+    // Check if the position is available (not overlapping with existing quotes)
+    const randomQuotes = selectRandomQuotes();
+    const quote = randomQuotes[quoteIndex];
+    quoteIndex = (quoteIndex + 1) % randomQuotes.length;
 
     const quoteElement = document.createElement('p');
-    quoteElement.textContent = randomQuote.textContent;
-
-    const quoteWidth = quoteElement.offsetWidth;
-    const quoteHeight = quoteElement.offsetHeight;
-
-    // Bepaal minimale afstand tussen elke quote
-    const minDistance = 20;
-
-    // Bepaal de breedte en hoogte van het scherm
-    const screenWidth = window.innerWidth;
-    const screenHeight = window.innerHeight;
-
-    let leftPosition, topPosition;
-
-    // Bepaal willekeurige posities voor de quote
-    leftPosition = Math.random() * (screenWidth - quoteWidth - minDistance);
-    topPosition = Math.random() * (screenHeight - quoteHeight - minDistance);
+    quoteElement.textContent = quote;
 
     quoteElement.style.position = 'absolute';
     quoteElement.style.display = 'block';
-    quoteElement.style.left = `${leftPosition}px`;
-    quoteElement.style.top = `${topPosition}px`;
+    quoteElement.style.textAlign = 'center';
+    quoteElement.style.width = '500px';
+    quoteElement.style.margin = '0';
+    quoteElement.style.transform = `translate(-250px, -75px) rotate(${Math.random() * 6 - 3}deg) scale(${Math.random() * 0.5 + 0.5})`;
+    quoteElement.style.left = `${position.x}`; // Use the x-coordinate of the fixed position
+    quoteElement.style.top = `${position.y}`; // Use the y-coordinate of the fixed position
 
     quoteElement.style.color = decibelToColor(decibel);
 
-    document.body.appendChild(quoteElement); // Voeg quote toe aan body
+    document.body.appendChild(quoteElement); // Add quote to the body
 
     quoteCounter++;
 
-    if (quoteCounter === 7) {
+    if (quoteCounter === 5) {
       startNextPageTimer();
     }
   }
@@ -150,10 +168,22 @@ function startNextPageTimer() {
 
 document.addEventListener('click', startMicrofoon);
 
-function resetQuotesSelflove() {
+function resetQuotesCombined() {
   analyser = null;
-  bufferLength;
-  dataArray;
+  bufferLength = null;
+  dataArray = null;
   quoteIndex = 0;
   quoteCounter = 0;
+}
+
+function selectRandomQuotes() {
+  const selectedQuotes = [];
+  while (selectedQuotes.length < 7) {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    const randomQuote = quotes[randomIndex];
+    if (!selectedQuotes.includes(randomQuote)) {
+      selectedQuotes.push(randomQuote);
+    }
+  }
+  return selectedQuotes;
 }

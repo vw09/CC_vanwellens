@@ -8,6 +8,31 @@ let dataArray;
 let quoteIndex = 0;
 let quoteCounter = 0;
 
+// Array met quotes
+const quotes = [
+  "Don't let idiots ruin your day.",
+  'Why be moody when you can shake yo booty.',
+  "Never do the same mistake twice. Unless he's hot!",
+  'Be like the sun keep on shining and let them burn.',
+  'An apple a day keeps anyone away if you trow it hard enough.',
+  'whatever you must do today... Do it with the confidence of a 4-year old in a batman cape',
+  'If life give you lemons... add Vodka.',
+  "When life shuts a door... open it again. It's a door. That's how they work.",
+  'Knowledge is knowing a tomato is a fruit. Wisdom is not putting it in a fruit salad.',
+  'Life is short. Smile while you still have teeth.',
+  'After Tuesday, even the calender goes W T F',
+  'When something goes wrong in your life, just yell,PLOT TWIST! and move on.',
+];
+
+// Vaste posities voor de eerste 5 quotes
+const fixedPositions = [
+  { x: '50vw', y: '50vh' },
+  { x: '20vw', y: '80vh' },
+  { x: '80vw', y: '20vh' },
+  { x: '80vw', y: '80vh' },
+  { x: '20vw', y: '20vh' },
+];
+
 async function startMicrofoon() {
   try {
     const audioContext = new AudioContext();
@@ -45,67 +70,35 @@ function detecteerGeluidsniveau() {
   displayFrequencyData(gemiddeldGeluidsniveau);
 }
 
-function checkOverlap(newQuote) {
-  const existingQuotes = document.querySelectorAll('body > p');
-  for (let i = 0; i < existingQuotes.length; i++) {
-    const rect1 = existingQuotes[i].getBoundingClientRect();
-    const rect2 = newQuote.getBoundingClientRect();
-    if (
-      rect1.left < rect2.right &&
-      rect1.right > rect2.left &&
-      rect1.top < rect2.bottom &&
-      rect1.bottom > rect2.top
-    ) {
-      return true;
-    }
-  }
-  return false;
-}
-
 async function loadRandomQuote(decibel) {
-  if (quoteCounter < 7) {
-    const quotes = Array.from(container.querySelectorAll('p'));
-    const randomQuote = quotes[quoteIndex];
-    quoteIndex = (quoteIndex + 1) % quotes.length;
+  if (quoteCounter < 5) {
+    // We want only 5 quotes at fixed positions
+    const position = fixedPositions[quoteCounter]; // Get the fixed position for this quote
+
+    // Check if the position is available (not overlapping with existing quotes)
+    const randomQuotes = selectRandomQuotes();
+    const quote = randomQuotes[quoteIndex];
+    quoteIndex = (quoteIndex + 1) % randomQuotes.length;
 
     const quoteElement = document.createElement('p');
-    quoteElement.textContent = randomQuote.textContent;
-
-    const quoteWidth = quoteElement.offsetWidth;
-    const quoteHeight = quoteElement.offsetHeight;
-
-    // Bepaal minimale afstand tussen elke quote
-    const minDistance = 20;
-
-    // Bepaal de breedte en hoogte van het scherm
-    const screenWidth = window.innerWidth;
-    const screenHeight = window.innerHeight;
-    let leftPosition, topPosition;
-
-    do {
-      leftPosition = Math.random() * (screenWidth - quoteWidth - minDistance);
-      topPosition = Math.random() * (screenHeight - quoteHeight - minDistance);
-
-      quoteElement.style.left = `${leftPosition}px`;
-      quoteElement.style.top = `${topPosition}px`;
-    } while (checkOverlap(quoteElement));
-
-    // Bepaal willekeurige posities voor de quote
-    leftPosition = Math.random() * (screenWidth - quoteWidth - minDistance);
-    topPosition = Math.random() * (screenHeight - quoteHeight - minDistance);
+    quoteElement.textContent = quote;
 
     quoteElement.style.position = 'absolute';
     quoteElement.style.display = 'block';
-    quoteElement.style.left = `${leftPosition}px`;
-    quoteElement.style.top = `${topPosition}px`;
+    quoteElement.style.textAlign = 'center';
+    quoteElement.style.width = '500px';
+    quoteElement.style.margin = '0';
+    quoteElement.style.transform = `translate(-250px, -75px) rotate(${Math.random() * 6 - 3}deg) scale(${Math.random() * 0.5 + 0.5})`;
+    quoteElement.style.left = `${position.x}`; // Use the x-coordinate of the fixed position
+    quoteElement.style.top = `${position.y}`; // Use the y-coordinate of the fixed position
 
     quoteElement.style.color = decibelToColor(decibel);
 
-    document.body.appendChild(quoteElement); // Voeg quote toe aan body
+    document.body.appendChild(quoteElement); // Add quote to the body
 
     quoteCounter++;
 
-    if (quoteCounter === 7) {
+    if (quoteCounter === 5) {
       startNextPageTimer();
     }
   }
@@ -174,10 +167,22 @@ function startNextPageTimer() {
 
 document.addEventListener('click', startMicrofoon);
 
-function resetQuoteslaugh() {
+function resetQuotesCombined() {
   analyser = null;
-  bufferLength;
-  dataArray;
+  bufferLength = null;
+  dataArray = null;
   quoteIndex = 0;
   quoteCounter = 0;
+}
+
+function selectRandomQuotes() {
+  const selectedQuotes = [];
+  while (selectedQuotes.length < 7) {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    const randomQuote = quotes[randomIndex];
+    if (!selectedQuotes.includes(randomQuote)) {
+      selectedQuotes.push(randomQuote);
+    }
+  }
+  return selectedQuotes;
 }
