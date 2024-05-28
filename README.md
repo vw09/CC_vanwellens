@@ -57,4 +57,4 @@ Om de knoppen aan de box te bevestigen, schroef je het onderste wieltje van de k
 Ik heb stickers gemaakt voor de mensen die mijn installatie hebben bezocht. Deze stickers zijn bedoeld om je te herinneren aan je mentale gezondheid.
 
 Om de stickers te maken, maak je twee lagen in een Illustrator-bestand. In de eerste laag plaats je de afbeelding van de sticker, en in de tweede laag maak je de cutContour. Deze contour is 100% magenta en zorgt ervoor dat je de sticker na het printen kunt laten uitsnijden.
-<img width="1099" alt="stickers" src="https://github.com/vw09/CC_vanwellens/assets/151523107/bc1cb7b5-88b5-4149-af71-5e65125be856">
+<img width="800" alt="stickers" src="https://github.com/vw09/CC_vanwellens/assets/151523107/bc1cb7b5-88b5-4149-af71-5e65125be856">
