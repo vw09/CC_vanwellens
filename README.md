@@ -69,3 +69,5 @@ Om de stickers te maken, maak je twee lagen in een Illustrator-bestand. In de ee
 ### Canvas
 
 Als laatste heb ik ook nog gezorgd dat mijn kamer was aangekleed op een leuke manier. Hiervoor heb ik canvassen geschilderd, en ballonnen opgeblazen. Het waren kleine dingen maar fleurde wel direct de kamer op.
+
+# Code uitgelegd
