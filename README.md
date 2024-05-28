@@ -29,22 +29,20 @@ Dit concept biedt een veilige en toegankelijke manier om je emoties te uiten en 
 
 ## Instaleren en uitvoeren
 
-1: Download en kopieër het project
-2: Instaleer node.js in het project
-3: In terminal -> npm install
-4: In terminal -> npm run dev
+- 1: Download en kopieër het project
+- 2: Instaleer node.js in het project
+- 3: In terminal -> npm install
+- 4: In terminal -> npm run dev
 
 # Constructie
 
-Om de installatie interactief te maken, heb ik knoppen gebruikt. Hiervoor heb ik een doos gemaakt waarin de vier knoppen zijn geplaatst.
+Om de installatie interactief te maken, heb ik een doos gemaakt met vier knoppen. Deze doos is uitgesneden met een lasercutter, waarbij ik 3 mm dik hout heb gebruikt.
 
-De doos is uitgesneden met een lasercutter. Het ontwerp heb ik gemaakt via de website makercase.com, waarbij ik heb gekozen voor 3 mm dik hout. Vervolgens heb ik in Illustrator vier gaten toegevoegd voor de knoppen en een extra gat aan de zijkant van de doos, zodat de kabels daar naar buiten kunnen.
+De doos dient niet alleen als behuizing voor de knoppen, maar ook voor het opbergen van de Raspberry Pi, zodat alle apparatuur netjes is weggewerkt. Het ontwerp bestaat uit vijf panelen, waarvan de onderkant open is. Aan de bovenzijde zijn er vier gaten voor de knoppen en aan de linkerzijde een groter gat voor de kabels.
 
-De doos is niet alleen bedoeld voor de knoppen, maar ook om de Raspberry Pi in op te bergen, zodat de apparatuur netjes is weggewerkt.
+Het Illustrator-bestand moet je opslaan als .ai-bestand en op een USB-stick zetten. Vervolgens steek je de USB-stick in de lasercutter, die het ontwerp uitsnijdt zoals aangegeven.
 
-De doos bestaat uit vijf panelen, waarbij de onderkant open is. Aan de bovenzijde zijn er vier gaten voor de knoppen en aan de linkerzijde een groter gat voor de kabels.
-
-Het Illustrator-bestand moet je opslaan als een .ai-bestand en op een USB-stick zetten. Vervolgens steek je de USB-stick in de lasercutter, die het ontwerp uitsnijdt zoals je hebt aangegeven.
+Om duidelijk te maken welke specifieke knop voor welke quote dien heb ik mini canvasen op een mini ezel gezet hierop staan de soorten motivaties die vasthangen aan de bovenstaande knop.
 
 Ten slotte heb ik de doos geschilderd in het thema van de installatie.
 
@@ -57,3 +55,7 @@ Om de knoppen aan de box te bevestigen, schroef je het onderste wieltje van de k
 Ik heb stickers gemaakt voor de mensen die mijn installatie hebben bezocht. Deze stickers zijn bedoeld om je te herinneren aan je mentale gezondheid.
 
 Om de stickers te maken, maak je twee lagen in een Illustrator-bestand. In de eerste laag plaats je de afbeelding van de sticker, en in de tweede laag maak je de cutContour. Deze contour is 100% magenta en zorgt ervoor dat je de sticker na het printen kunt laten uitsnijden.
+
+### Canvas
+
+Als laatste heb ik ook nog gezorgd dat mijn kamer was aangekleed op een leuke manier. Hiervoor heb ik canvassen geschilderd, en ballonnen opgeblazen. Het waren kleine dingen maar fleurde wel direct de kamer op.
