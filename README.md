@@ -157,9 +157,12 @@ function captureImage() {
 }
 ```
 
-Dit is de bijhorende html.
+Dit zijn de bijhorende html pagina's die bij de main.js horen.
+
 Hierin staat de welkomst tekst die je ziet op het begin scherm.
 hierin staan enkele links voor de fonts die ik nodig heb.
+
+### Index
 
 ```html
 <!doctype html>
@@ -184,4 +187,28 @@ hierin staan enkele links voor de fonts die ik nodig heb.
       <p>Druk op een knop om te starten</p>
     </div>
 </html>
+```
+
+Deze index bevat een videostreamcontainer voor live webcambeelden, een welkomsttekstsectie, een sectie voor het weergeven van snapshots van de videostream, een fotogalerijsectie en een sectie voor het tonen van frequentiegegevens, zoals het voorkomen van bepaalde gebeurtenissen zoals gezichtsuitdrukkingen.
+
+### Index2
+
+```html
+  <body>
+    <div
+      style="border-radius: 10px; overflow: hidden; width: 720px; height: 560px"
+    >
+      <video width="100%" height="100%" autoplay muted></video>
+    </div>
+
+    <div id="welcometekst"></div>
+
+    <div id="snapshots"></div>
+
+    <div id="foto-galerij"></div>
+
+    <div id="frequencyData"></div>
+  </body>
+</html>
+
 ```
