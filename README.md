@@ -66,8 +66,17 @@ Ik heb stickers gemaakt voor de mensen die mijn installatie hebben bezocht. Deze
 
 Om de stickers te maken, maak je twee lagen in een Illustrator-bestand. In de eerste laag plaats je de afbeelding van de sticker, en in de tweede laag maak je de cutContour. Deze contour is 100% magenta en zorgt ervoor dat je de sticker na het printen kunt laten uitsnijden.
 
+
 ### Canvas
 
 Als laatste heb ik ook nog gezorgd dat mijn kamer was aangekleed op een leuke manier. Hiervoor heb ik canvassen geschilderd, en ballonnen opgeblazen. Het waren kleine dingen maar fleurde wel direct de kamer op.
 
 # Code uitgelegd
+
+<img width="800" alt="stickers" src="https://github.com/vw09/CC_vanwellens/assets/151523107/c96f5949-6e28-4b15-a730-66fbed6b26b3">
+
+
+### Canvas
+
+Als laatste heb ik ook nog gezorgd dat mijn kamer was aangekleed op een leuke manier. Hiervoor heb ik canvassen geschilderd, en ballonnen opgeblazen. Het waren kleine dingen maar fleurde wel direct de kamer op.
+317fb00aed405359236dfde0980e11a2d3ad63a9
