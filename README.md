@@ -16,7 +16,7 @@ Na ongeveer 10 seconden stopt de installatie met het weergeven van woorden. Onde
 
 Dit concept biedt een veilige en toegankelijke manier om je emoties te uiten en kan helpen om een gevoel van opluchting en tevredenheid te bereiken. Gebruik "Scream in Serenity" wanneer je behoefte hebt aan een uitlaatklep voor je emoties en ervaar hoe je stap voor stap een rustiger en meer gebalanceerd leven kunt leiden.
 
-### benodigdheden
+## Benodigdheden
 
 - computer
 - raspberrypi
@@ -26,3 +26,12 @@ Dit concept biedt een veilige en toegankelijke manier om je emoties te uiten en 
 - 4 drukknoppen
 - HDMI kabel
 - Lan kabel
+
+## Instaleren en uitvoeren
+
+1: Download en kopieër het project
+2: Instaleer node.js in het project
+3: In terminal -> npm install
+4: In terminal -> npm run dev
+
+# Constructie
