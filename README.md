@@ -210,5 +210,42 @@ Deze index bevat een videostreamcontainer voor live webcambeelden, een welkomstt
     <div id="frequencyData"></div>
   </body>
 </html>
+```
 
+### Intro
+
+Hier zie
+
+```html
+  <body>
+
+    <canvas
+    id="video-canvas"
+    width="720"
+    height="560"
+    style="border-radius: 10px"
+  ></canvas>
+
+
+    <video
+      width="720"
+      height="560"
+      autoplay
+      muted
+      style="border-radius: 10px"
+    ></video>
+
+    <div id="welcometekst">
+    <p>SCREAM IN SERENITY!</p></div>
+
+    <div id="subtekst-welcome">
+    <p>Kies een knop naar keuze.
+      Neem nu diep adem en roep zo hard je kan.</p>
+
+    <div id="snapshots"></div>
+
+    <div id="foto-galerij"></div>
+
+    <div id="frequencyData"></div>
+  </body>
 ```
