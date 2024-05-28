@@ -35,3 +35,25 @@ Dit concept biedt een veilige en toegankelijke manier om je emoties te uiten en 
 4: In terminal -> npm run dev
 
 # Constructie
+
+Om de installatie interactief te maken, heb ik knoppen gebruikt. Hiervoor heb ik een doos gemaakt waarin de vier knoppen zijn geplaatst.
+
+De doos is uitgesneden met een lasercutter. Het ontwerp heb ik gemaakt via de website makercase.com, waarbij ik heb gekozen voor 3 mm dik hout. Vervolgens heb ik in Illustrator vier gaten toegevoegd voor de knoppen en een extra gat aan de zijkant van de doos, zodat de kabels daar naar buiten kunnen.
+
+De doos is niet alleen bedoeld voor de knoppen, maar ook om de Raspberry Pi in op te bergen, zodat de apparatuur netjes is weggewerkt.
+
+De doos bestaat uit vijf panelen, waarbij de onderkant open is. Aan de bovenzijde zijn er vier gaten voor de knoppen en aan de linkerzijde een groter gat voor de kabels.
+
+Het Illustrator-bestand moet je opslaan als een .ai-bestand en op een USB-stick zetten. Vervolgens steek je de USB-stick in de lasercutter, die het ontwerp uitsnijdt zoals je hebt aangegeven.
+
+Ten slotte heb ik de doos geschilderd in het thema van de installatie.
+
+### Knoppen bevestigen
+
+Om de knoppen aan de box te bevestigen, schroef je het onderste wieltje van de knop los. Je steekt de knop door het gat en schroeft het wiel er weer op. Hierdoor worden de knoppen aan de doos bevestigd. De knoppen zijn bevestigd aan de raspberrypi door middel van draden.
+
+# Stickers
+
+Ik heb stickers gemaakt voor de mensen die mijn installatie hebben bezocht. Deze stickers zijn bedoeld om je te herinneren aan je mentale gezondheid.
+
+Om de stickers te maken, maak je twee lagen in een Illustrator-bestand. In de eerste laag plaats je de afbeelding van de sticker, en in de tweede laag maak je de cutContour. Deze contour is 100% magenta en zorgt ervoor dat je de sticker na het printen kunt laten uitsnijden.
