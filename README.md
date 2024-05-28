@@ -27,6 +27,16 @@ Dit concept biedt een veilige en toegankelijke manier om je emoties te uiten en 
 - HDMI kabel
 - Lan kabel
 
+## Technische vaardigheden
+
+- html
+- css
+- javascript
+- node.js
+- github
+- netlify
+- figma
+
 ## Instaleren en uitvoeren
 
 - 1: Download en kopieër het project
