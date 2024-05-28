@@ -86,6 +86,12 @@ Als laatste heb ik ook nog gezorgd dat mijn kamer was aangekleed op een leuke ma
 
 Voordat je de code kunt uitvoeren, moet je ervoor zorgen dat je de face-api.js-bibliotheek hebt geïnstalleerd. Je kunt deze bibliotheek installeren via npm.
 
+## Main.js
+
+Deze JavaScript-code gebruikt face-api.js voor live gezichtsdetectie en emotieherkenning via de webcam. Na het importeren van de nodige bestanden en het selecteren van het <video>-element, worden de gezichtsdetectie-, landmarks- en emotieherkenningsmodellen geladen en de videostream gestart.
+
+Tijdens het afspelen van de videostream wordt om de 7 seconden gezichts- en emotieherkenning uitgevoerd, en de resultaten worden op een canvas weergegeven. Als een gezicht wordt gedetecteerd, wordt een snapshot gemaakt en samen met de emoties opgeslagen in de lokale opslag van de browser. Vervolgens wordt de gebruiker doorgestuurd naar een andere pagina.
+
 ```javascript
 import './style.css';
 import * as faceapi from 'face-api.js';
