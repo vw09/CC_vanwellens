@@ -82,15 +82,13 @@ Als laatste heb ik ook nog gezorgd dat mijn kamer was aangekleed op een leuke ma
 - Toekomstige verbeteringen
 - Licentie
 
-### Installatie
+## Installatie
 
 Voordat je de code kunt uitvoeren, moet je ervoor zorgen dat je de face-api.js-bibliotheek hebt geïnstalleerd. Je kunt deze bibliotheek installeren via npm.
 
-## Main.js
+### Main.js
 
-Deze JavaScript-code gebruikt face-api.js voor live gezichtsdetectie en emotieherkenning via de webcam. Na het importeren van de nodige bestanden en het selecteren van het <video>-element, worden de gezichtsdetectie-, landmarks- en emotieherkenningsmodellen geladen en de videostream gestart.
-
-Tijdens het afspelen van de videostream wordt om de 7 seconden gezichts- en emotieherkenning uitgevoerd, en de resultaten worden op een canvas weergegeven. Als een gezicht wordt gedetecteerd, wordt een snapshot gemaakt en samen met de emoties opgeslagen in de lokale opslag van de browser. Vervolgens wordt de gebruiker doorgestuurd naar een andere pagina.
+Dit project maakt gebruik van de face-api.js bibliotheek om gezichtsdetectie en expressieherkenning uit te voeren via de webcam. Het detecteert gezichten in real-time met behulp van de webcam en herkent gezichtskenmerken en -expressies. Zodra een gezicht is gedetecteerd, maakt het project een snapshot van het gedetecteerde gezicht en slaat deze lokaal op. Nadat de snapshot is genomen, verwijst de applicatie door naar een introductiepagina.
 
 ```javascript
 import './style.css';
@@ -157,10 +155,7 @@ function captureImage() {
 }
 ```
 
-Dit zijn de bijhorende html pagina's die bij de main.js horen.
-
-Hierin staat de welkomst tekst die je ziet op het begin scherm.
-hierin staan enkele links voor de fonts die ik nodig heb.
+Deze HTML-pagina bevat de structuur voor een webpagina die gebruik maakt van gezichtsdetectie via de webcam. In de head-sectie worden de nodige scripts en stijlen geïmporteerd. De body-sectie bevat een welkomsttekst die de gebruiker aanspoort om op een knop te drukken om te starten. Er is ook een container die een live videostream van de webcam weergeeft, met een stijl die ervoor zorgt dat de video mooi wordt weergegeven binnen een afgeronde rechthoek. Verder zijn er secties voor het weergeven van snapshots van de videostream, een fotogalerij, en frequentiegegevens zoals het voorkomen van bepaalde gezichtsuitdrukkingen.
 
 ### Index
 
@@ -189,9 +184,44 @@ hierin staan enkele links voor de fonts die ik nodig heb.
 </html>
 ```
 
-Deze index bevat een videostreamcontainer voor live webcambeelden, een welkomsttekstsectie, een sectie voor het weergeven van snapshots van de videostream, een fotogalerijsectie en een sectie voor het tonen van frequentiegegevens, zoals het voorkomen van bepaalde gebeurtenissen zoals gezichtsuitdrukkingen.
+### Index.js
+
+deze code maakt verbinding met een WebSocket-server, logt een bericht wanneer de verbinding tot stand is gebracht, en controleert inkomende berichten om de gebruiker door te sturen naar een andere pagina (index2.html) als aan bepaalde voorwaarden wordt voldaan.
+
+```javascript
+startWebsocket();
+
+function startWebsocket() {
+  const ws = new WebSocket('ws://10.150.197.52:1880/websocket');
+
+  ws.onopen = function () {
+    console.log('Connected to server');
+  };
+  ws.onmessage = function (e) {
+    const data = e.data;
+    console.log(data);
+
+    if (data === '40') {
+      window.location.href = 'index2.html';
+    }
+    if (data === '38') {
+      window.location.href = 'index2.html';
+    }
+
+    if (data === '36') {
+      window.location.href = 'index2.html';
+    }
+
+    if (data === '32') {
+      window.location.href = 'index2.html';
+    }
+  };
+}
+```
 
 ### Index2
+
+Deze variant van de indexpagina bevat een vergelijkbare structuur met enkele aanpassingen. De container voor de live videostream is opnieuw opgenomen, maar zonder een initiële welkomsttekst. Er zijn ook secties voor het weergeven van snapshots van de videostream, een fotogalerij, en frequentiegegevens zoals het voorkomen van gezichtsuitdrukkingen, maar deze zijn momenteel leeg en kunnen dynamisch worden gevuld door het JavaScript.
 
 ```html
   <body>
@@ -214,7 +244,7 @@ Deze index bevat een videostreamcontainer voor live webcambeelden, een welkomstt
 
 ### Intro
 
-Hier zie
+Deze HTML-pagina is bedoeld voor een introductiepagina die gebruikers aanmoedigt om deel te nemen aan een activiteit. De canvas en video elementen zijn beide ingesteld om de live videostream weer te geven, met een afgeronde rechthoekstijl. De welkomsttekst sectie bevat een oproep om in sereniteit te schreeuwen, gevolgd door een subtekst die de gebruikers instrueert om een knop te kiezen, diep adem te halen en zo hard mogelijk te roepen. Er zijn ook secties voor het weergeven van snapshots van de videostream, een fotogalerij, en frequentiegegevens zoals het voorkomen van gezichtsuitdrukkingen. Deze secties kunnen worden gevuld met dynamische inhoud door het JavaScript.
 
 ```html
   <body>
@@ -249,3 +279,5 @@ Hier zie
     <div id="frequencyData"></div>
   </body>
 ```
+
+# De 4 quote pages
