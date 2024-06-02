@@ -988,3 +988,21 @@ function getRandomColor() {
 
 setInterval(createConfetti, 100); // Create confetti every 100 milliseconds
 ```
+
+# Valkuilen
+
+- 1: Zorg ervoor dat je optijd mensen laat testen. Zo kom je snel te weten of schermen korter of langer moeten en meestal zien ze nog andere elementen die jij over het hoofd zien.
+
+- 2: Zie dat je de mensen blijft boeien. Doordat ze vlot door de schermen doorgaan maar met nog net genoeg tijd om er van te genieten.
+
+# Tips & Tricks
+
+- De eerste tip die ik kan geven is om heel goed je in te lezen over hoe de code werkt. Het is niet altijd even simpel om de code te begrijpen maar eens je echt weet waarover het gaat dan ben je er vlot mee weg.
+
+- Zorg dat je je kamer aankleed met een leuke vibe dat helpt het project heel hard als mensen binnen komen en ze voelen de happyvibe dan gaan ze met die vibe starten aan je project.
+
+- zie dat de bekbeling en de raspberry goed is weggestoken. Ik keb ze in de doos op de knoppen gestopt en uit het gat dat ik heb gemaakt daar komen de kabels uit.
+
+- voor dat je het project voorstelt zorg dat je het nog eens hebt getest. Dat bespaart heel wat stress.
+
+# Video
