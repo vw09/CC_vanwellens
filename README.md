@@ -740,3 +740,251 @@ const fixedPositions = [
   { x: '20vw', y: '20vh' },
 ];
 ```
+
+## Snapshots-making.html
+
+Dit is het basis kader waar de javascript zich inzet.
+
+```html
+    <script type="module" src="/snapshot2.js"></script>
+    <script type="module" src="/style.css"></script>
+  </head>
+  <body>
+    <video width="720" height="560" autoplay muted></video>
+
+    <div id="snapshots"></div>
+
+    <div id="foto-galerij"></div>
+
+    <div id="frequencyData"></div>
+    </div>
+  </body>
+```
+
+## Snapshot2.js
+
+Deze code maakt gebruik van de Face-API.js-bibliotheek om gezichtsdetectie en expressieherkenning uit te voeren op live videostreams vanuit de webcam van de gebruiker. Ten eerste worden de nodige modellen geladen voor gezichtsdetectie, gezichtskenmerken en expressieherkenning. Zodra de modellen zijn geladen, wordt de webcamvideo gestart en weergegeven op de webpagina. Voor elke videoframe wordt gezichtsdetectie en expressieherkenning uitgevoerd. Als er een gezicht wordt gedetecteerd en er nog geen tweede snapshot is genomen, wordt er een snapshot van het gezicht gemaakt en worden de expressiegegevens opgeslagen in de lokale opslag. Vervolgens wordt de gebruiker doorgestuurd naar een andere pagina om de snapshots te bekijken. Deze code biedt een interactieve ervaring voor het detecteren en analyseren van gezichtsuitdrukkingen van de gebruiker met behulp van de webcam.
+
+```javascript
+import './style.css';
+import * as faceapi from 'face-api.js';
+
+const video = document.querySelector('video');
+let snapshotTaken2 = false; // Variabele om bij te houden of er al een tweede snapshot is genomen
+
+async function loadModels() {
+  await faceapi.nets.tinyFaceDetector.loadFromUri('/models');
+  await faceapi.nets.faceLandmark68Net.loadFromUri('/models');
+  await faceapi.nets.faceExpressionNet.loadFromUri('/models');
+
+  startVideo();
+}
+
+async function startVideo() {
+  const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+  video.srcObject = stream;
+}
+
+video.addEventListener('play', () => {
+  const canvas = faceapi.createCanvasFromMedia(video);
+  document.body.append(canvas);
+  const displaySize = { width: video.width, height: video.height };
+  faceapi.matchDimensions(canvas, displaySize);
+
+  setInterval(async () => {
+    const detections = await faceapi
+      .detectAllFaces(video, new faceapi.TinyFaceDetectorOptions())
+      .withFaceExpressions();
+
+    const resizedDetections = faceapi.resizeResults(detections, displaySize);
+    canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+    faceapi.draw.drawDetections(canvas, resizedDetections);
+    faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
+
+    // Maak een tweede snapshot als er nog geen tweede snapshot is genomen en er gezichtsdetectie heeft plaatsgevonden
+    // Maak een snapshot van het canvas als er nog geen snapshot is genomen
+    if (!snapshotTaken2 && detections.length > 0) {
+      // Maak een snapshot van het video element
+      captureImage();
+
+      console.log(detections);
+      localStorage.setItem(
+        'expression',
+        JSON.stringify(detections[0].expressions),
+      );
+
+      location.assign('/snapshots.html');
+    }
+  }, 7000);
+});
+
+// Laad de modellen en start de video wanneer de pagina geladen is
+loadModels();
+
+function captureImage() {
+  const canvas = document.createElement('canvas');
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  canvas.getContext('2d').drawImage(video, 0, 0);
+  const data = canvas.toDataURL('image/png');
+  localStorage.setItem('snapshot2', data);
+}
+```
+
+## Snapshots.html
+
+Er is een tekst die vraagt of er veranderingen te zien zijn tussen twee afbeeldingen. De afbeeldingen worden weergegeven binnen een container met de class "image-container", waarbij elke afbeelding een unieke id heeft ("snapshot" en "snapshot2") en wordt geladen vanaf een specifieke locatie op de server.
+
+```html
+<div id="foto-galerij">
+  <p>Hier zie je jou voor en na het roepen. Zie jij verandering?</p>
+  <div class="image-container">
+    <img id="snapshot" src="snapshot" alt="Screenshot" />
+    <img id="snapshot2" src="snapshot2" alt="Screenshot2" />
+  </div>
+</div>
+```
+
+## Snapshots.js
+
+Deze JavaScript-code wordt uitgevoerd zodra de DOM-content is geladen. Het haalt opgeslagen screenshots op uit de lokale opslag en voegt ze toe aan de webpagina. Als er geen opgeslagen screenshots zijn, wordt een alternatieve tekst ingesteld. Vervolgens wordt een timer gestart die na 7 seconden de gebruiker doorstuurt naar de volgende pagina ('endquote.html').
+
+```javascript
+document.addEventListener('DOMContentLoaded', function () {
+  // Haal de opgeslagen screenshots op uit de local storage
+  const snapshot = localStorage.getItem('snapshot');
+  const snapshot2 = localStorage.getItem('snapshot2');
+
+  // Voeg de screenshots toe aan de DOM
+  const snapshotImg = document.getElementById('snapshot');
+  const snapshot2Img = document.getElementById('snapshot2');
+
+  if (snapshot) {
+    snapshotImg.src = snapshot;
+  } else {
+    snapshotImg.alt = 'screen 1 niet gevonden';
+  }
+
+  if (snapshot2) {
+    snapshot2Img.src = snapshot2;
+  } else {
+    snapshot2Img.alt = 'screen 2 niet gevonden';
+  }
+  console.log('snapshot', snapshot);
+  console.log('snapshot2', snapshot2);
+});
+
+function startNextPageTimer() {
+  setTimeout(() => {
+    console.log('Navigeren naar de volgende pagina...');
+    window.location.href = 'endquote.html';
+  }, 7000);
+}
+
+startNextPageTimer(startNextPageTimer());
+```
+
+## Endquote.html
+
+Deze code heeft een div-container met confetti in en een p-tag waarin een random quote komt te staan.
+
+```html
+<body>
+  <div id="confetti-container"></div>
+
+  <p id="random-quote"></p>
+</body>
+```
+
+## Endquote.js
+
+Deze code genereert een willikeurig citaat uit een aangemaakte array wanneer de pagina 'endquote.html' wordt geladen. Het citaat wordt vervolgens weergegeven op de pagina en na 10 seconden wordt de gebruiker automatisch teruggestuurd naar de hoofdpagina ('index.html'). Daarnaast creëert de code ook een constante stroom van confetti op de pagina, waarbij elk confetti-element willekeurig wordt gepositioneerd en een willekeurige kleur krijgt. De confetti verdwijnt na 2 seconden automatisch.
+
+```javascript
+const quotes = [
+  "Don't let idiots ruin your day.",
+  'Why be moody when you can shake yo booty.',
+  "Never do the same mistake twice. Unless he's hot!",
+  'Be like the sun keep on shining and let them burn.',
+  'An apple a day keeps anyone away if you throw it hard enough.',
+  'Whatever you must do today... Do it with the confidence of a 4-year old in a batman cape.',
+  'If life give you lemons... add Vodka.',
+  "When life shuts a door... open it again. It's a door. That's how they work.",
+  'Knowledge is knowing a tomato is a fruit. Wisdom is not putting it in a fruit salad.',
+  'Life is short. Smile while you still have teeth.',
+  'After Tuesday, even the calendar goes W T F',
+  "When something goes wrong in your life, just yell, 'PLOT TWIST!' and move on.",
+  'Slow progress is better than no progress. Stay positive and never give up.',
+  'The capacity to learn is a gift; the ability to learn is a skill; the willingness to learn is a choice.',
+  "Success is no accident. It's hard work, perseverance, learning, studying, sacrifice and most of all, love of what you are doing or learning to do.",
+  'Your mindset is everything. It shapes your world and your reality, choose wisely!',
+  "Success does not lie in the 'results' but in 'efforts', 'being' the best is not so important, 'doing' the best is all that matters...",
+  "If the plan doesn't work, change the plan but never the goal.",
+  'Focus on the step in front of you, not the whole staircase.',
+  'Your direction is more important than your speed.',
+  "Don't stop until you're proud.",
+  'A negative mind will never give you a positive life.',
+  'You carry so much love in your heart. Give some to yourself.',
+  'You have always been enough!',
+  'You owe it to yourself to become everything you were born with.',
+  "Don't let insecurity ruin the beauty you were born with.",
+  'You are magic, own that shit!',
+  'Life is too short to spend it at war with yourself.',
+  "It's not selfish to make your happiness your main priority.",
+  'Your commitment to being authentic has to be greater than your desire for approval.',
+  "Don't compare your life to others. There's no comparison between the sun and the moon; they shine when it's their time.",
+  "Your life isn't yours if you always care what others think.",
+  'If you focus on the hurt, you will continue to suffer. If you focus on the lesson, you will continue to grow.',
+  'Reminder: You can be a good person with a kind heart and still tell people to fuck off when needed.',
+  'To the world, you may be one person, but to one person you may be the world.',
+];
+
+function generateRandomQuote() {
+  const randomIndex = Math.floor(Math.random() * quotes.length);
+  return quotes[randomIndex];
+}
+
+window.onload = function () {
+  if (window.location.pathname === '/endquote.html') {
+    const quote = generateRandomQuote();
+    // Display the quote on the page
+    const quoteElement = document.createElement('p');
+    quoteElement.textContent = quote;
+    quoteElement.style.display = 'block';
+    quoteElement.style.textAlign = 'center';
+    quoteElement.style.width = '500px';
+    quoteElement.style.transform = `translate(-250px, -75px) rotate(${Math.random() * 6 - 3}deg) scale(${Math.random() * 0.5 + 0.5})`;
+    document.body.appendChild(quoteElement);
+
+    setTimeout(function () {
+      window.location.href = 'index.html';
+    }, 10000);
+  }
+};
+console.log(setTimeout);
+
+const container = document.getElementById('confetti-container');
+
+function createConfetti() {
+  const confetti = document.createElement('div');
+  confetti.classList.add('confetti');
+  confetti.style.left = Math.random() * window.innerWidth + 'px';
+  confetti.style.backgroundColor = getRandomColor();
+  container.appendChild(confetti);
+
+  setTimeout(() => {
+    confetti.remove();
+  }, 20000); // Remove confetti after 2 seconds
+}
+
+function getRandomColor() {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+setInterval(createConfetti, 100); // Create confetti every 100 milliseconds
+```
