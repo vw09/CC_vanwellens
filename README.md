@@ -55,10 +55,12 @@ Het Illustrator-bestand moet je opslaan als .ai-bestand en op een USB-stick zett
 Om duidelijk te maken welke specifieke knop voor welke quote dien heb ik mini canvasen op een mini ezel gezet hierop staan de soorten motivaties die vasthangen aan de bovenstaande knop.
 
 Ten slotte heb ik de doos geschilderd in het thema van de installatie.
+![IMG_0300](https://github.com/vw09/CC_vanwellens/assets/151523107/331c4a99-99a1-4cad-8656-49dff015e009)
 
 ### Knoppen bevestigen
 
 Om de knoppen aan de box te bevestigen, schroef je het onderste wieltje van de knop los. Je steekt de knop door het gat en schroeft het wiel er weer op. Hierdoor worden de knoppen aan de doos bevestigd. De knoppen zijn bevestigd aan de raspberrypi door middel van draden.
+![IMG_0134](https://github.com/vw09/CC_vanwellens/assets/151523107/e7d7d304-67d7-4209-a540-38f8c1f7fba1)
 
 # Stickers
 
