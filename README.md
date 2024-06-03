@@ -44,7 +44,7 @@ Dit concept biedt een veilige en toegankelijke manier om je emoties te uiten en 
 - 3: In terminal -> npm install
 - 4: In terminal -> npm run dev
 
-# Constructie
+## Constructie
 
 Om de installatie interactief te maken, heb ik een doos gemaakt met vier knoppen. Deze doos is uitgesneden met een lasercutter, waarbij ik 3 mm dik hout heb gebruikt.
 
@@ -57,18 +57,18 @@ Om duidelijk te maken welke specifieke knop voor welke quote dien heb ik mini ca
 Ten slotte heb ik de doos geschilderd in het thema van de installatie.
 ![IMG_0300](https://github.com/vw09/CC_vanwellens/assets/151523107/331c4a99-99a1-4cad-8656-49dff015e009)
 
-### Knoppen bevestigen
+## Knoppen bevestigen
 
 Om de knoppen aan de box te bevestigen, schroef je het onderste wieltje van de knop los. Je steekt de knop door het gat en schroeft het wiel er weer op. Hierdoor worden de knoppen aan de doos bevestigd. De knoppen zijn bevestigd aan de raspberrypi door middel van draden.
 ![IMG_0134](https://github.com/vw09/CC_vanwellens/assets/151523107/e7d7d304-67d7-4209-a540-38f8c1f7fba1)
 
-# Stickers
+## Stickers
 
 Ik heb stickers gemaakt voor de mensen die mijn installatie hebben bezocht. Deze stickers zijn bedoeld om je te herinneren aan je mentale gezondheid.
 
 Om de stickers te maken, maak je twee lagen in een Illustrator-bestand. In de eerste laag plaats je de afbeelding van de sticker, en in de tweede laag maak je de cutContour. Deze contour is 100% magenta en zorgt ervoor dat je de sticker na het printen kunt laten uitsnijden.
 
-### Canvas
+## Aankleding ruimte
 
 Als laatste heb ik ook nog gezorgd dat mijn kamer was aangekleed op een leuke manier. Hiervoor heb ik canvassen geschilderd, en ballonnen opgeblazen. Het waren kleine dingen maar fleurde wel direct de kamer op.
 
