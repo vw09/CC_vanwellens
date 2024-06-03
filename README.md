@@ -37,7 +37,7 @@ Dit concept biedt een veilige en toegankelijke manier om je emoties te uiten en 
 - netlify
 - figma
 
-## Instaleren en uitvoeren
+## Installeren en uitvoeren
 
 - 1: Download en kopieër het project
 - 2: Instaleer node.js in het project
