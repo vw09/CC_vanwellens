@@ -1005,4 +1005,13 @@ setInterval(createConfetti, 100); // Create confetti every 100 milliseconds
 
 - voor dat je het project voorstelt zorg dat je het nog eens hebt getest. Dat bespaart heel wat stress.
 
+# Wat wil ik nog veranderen.
+
+- De tijd van de snapshot die gemaakt moet worden ingekort. Mensen worden er heel ongemakkelijk van.
+- De snapshot die na het roepen gemaakt wordt duren te lang waardoor het effect van het verschil mist. Ik zou die net na het roepen laten maken +- 2 seconden erna. Er moet dan niet percé een extra scherm voor komen.
+- Er kunnen zeker nog aanpassingen gedaan worden in de visualisatie van het project.
+
 # Video
+
+De video laat je stap voor stap zien hoe de installatie werkt. We nemen je mee door de verschillende schermen, zodat je een goed beeld krijgt van het proces. Veel kijk plezier!
+[video](https://youtu.be/tJsxcjue41s).
